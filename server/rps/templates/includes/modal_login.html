@@ -1,0 +1,39 @@
+<div class="modal fade" id="modal-login">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="login-form">
+                    {{ login_form.hidden_tag() }}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <button class="btn w-100 btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-new-account" data-bs-dismiss="modal">Create New Account</button>
+                        </div>
+                        <hr>
+
+                        <div class="row mb-2">
+                            {{ login_form.username.label(class='form-label')}}
+                            {{ login_form.username(class='form-control', placeholder='email address')}}
+                        </div>
+                        <div class="row">
+                            {{ login_form.password.label(class='form-label')}}
+                            {{ login_form.password(class='form-control', placeholder='password')}}
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-outline-danger mb-auto" data-bs-dismiss="modal">
+                    <i class="fa fa-ban"></i> Cancel
+                </button>
+                {{ login_form.submit(class="btn btn-outline-success mb-auto", form='login-form') }}
+            </div>
+        </div>
+    </div>
+</div>

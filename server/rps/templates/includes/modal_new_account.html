@@ -1,0 +1,41 @@
+<div class="modal fade" id="modal-new-account">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="new-account-form">
+                    {{ new_account_form.hidden_tag() }}
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            {{ new_account_form.username.label(class='form-label')}}
+                            {{ new_account_form.username(class='form-control', placeholder='username')}}
+                        </div>
+                        <div class="row mb-2">
+                            {{ new_account_form.email.label(class='form-label')}}
+                            {{ new_account_form.email(class='form-control', placeholder='email address')}}
+                        </div>
+                        <hr>
+                        <div class="row mb-2">
+                            {{ new_account_form.password.label(class='form-label')}}
+                            {{ new_account_form.password(class='form-control', placeholder='password')}}
+                        </div>
+                        <div class="row">
+                            {{ new_account_form.password_confirm.label(class='form-label')}}
+                            {{ new_account_form.password_confirm(class='form-control', placeholder='confirm password')}}
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-outline-danger mb-auto" data-bs-dismiss="modal">Cancel</button>
+                {{ new_account_form.create_account(class="btn btn-outline-success mb-auto", form='new-account-form') }}
+            </div>
+        </div>
+    </div>
+</div>
