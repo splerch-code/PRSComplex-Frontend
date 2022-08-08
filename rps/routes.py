@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for, flash, request
 from rps.forms import *
 from rps.models import *
 from flask_login import login_user, logout_user, login_required
+from rps.sock_connect import Connection
 
 
 def flash_form_errors(form):
@@ -61,4 +62,11 @@ def index():
 def logout_page():
     logout_user()
     flash("You've successfully logged out", category='info')
+    return redirect(url_for('index'))
+
+@app.route('/test')
+def test():
+    x = 'button_test'
+    conn = Connection()
+    conn.send_packet(x)
     return redirect(url_for('index'))
