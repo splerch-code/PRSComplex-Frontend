@@ -43,7 +43,7 @@ def index():
                 password=new_account_form.password.data
             )
             create_account = Connection().create_account(
-                new_user.username, new_user.email, new_user.password
+                new_user.username, new_user.email, new_user.password_hash
             )
             if create_account['status'] == 'success':
                 login_user(new_user)
