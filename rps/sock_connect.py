@@ -1,8 +1,10 @@
 import socket
+import json
 
 REMOTE_HOST = '127.0.0.1'
 REMOTE_PORT = 6666
 FORMAT = 'utf-8'
+
 
 class Connection:
     def __init__(self):
@@ -13,7 +15,7 @@ class Connection:
     def send_packet(self, in_data, packet_type):
         """
 
-        :param str in_data:
+        :param dict in_data:
         :param int packet_type:
         :return:
         """
@@ -23,18 +25,16 @@ class Connection:
             print(out_data.decode(FORMAT))
             if out_data:
                 break
+        return json.loads(out_data)
 
     @staticmethod
     def format_packet(in_data, packet_type):
-        return f'RPS{packet_type}{in_data}COMPLEX'.encode(FORMAT)
+        return f'RPS{packet_type}{str(in_data)}COMPLEX'.encode(FORMAT)
 
-
-    def create_account(self,username,email,password_hash):
-        return
-
-
-
-
-
-
-
+    def create_account(self, username, email, password_hash):
+        send_data = {
+            'username': username,
+            'email': email,
+            'password_hash': password_hash
+        }
+        return self.send_packet(send_data, packet_type=2)

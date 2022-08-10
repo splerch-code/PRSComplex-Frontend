@@ -42,21 +42,18 @@ def index():
                 email=new_account_form.email.data,
                 password=new_account_form.password.data
             )
-            db.session.add(new_user)
-            create_attempt = LoginAttempt(
-                user_id=new_user.id,
-                attempt_dt=datetime.now(),
-                result='Created'
+            create_account = Connection().create_account(
+                new_user.username, new_user.email, new_user.password
             )
-            db.session.add(create_attempt)
-            db.session.commit()
-            login_user(new_user)
-            flash('Account successfully created!', category='success')
-            return redirect(request.url)
+            if create_account['status'] == 'success':
+                login_user(new_user)
+                flash('Account successfully created!', category='success')
+                return redirect(request.url)
         if new_account_form.errors:
             flash_form_errors(new_account_form)
 
     return render_template('base.html', login_form=login_form, new_account_form=new_account_form)
+
 
 @app.route('/logout')
 def logout_page():
@@ -64,9 +61,4 @@ def logout_page():
     flash("You've successfully logged out", category='info')
     return redirect(url_for('index'))
 
-@app.route('/test')
-def test():
-    x = 'button_test'
-    conn = Connection()
-    conn.send_packet(x,121024)
-    return redirect(url_for('index'))
+

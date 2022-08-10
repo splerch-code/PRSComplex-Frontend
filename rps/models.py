@@ -25,11 +25,11 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
-
-class LoginAttempt(db.Model):
-    __tablename__ = 'login_attempt'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    attempt_dt = db.Column(db.DateTime, nullable=False)
-    result = db.Column(db.String(length=10), nullable=False)
+#
+# class LoginAttempt(db.Model):
+#     __tablename__ = 'login_attempt'
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     attempt_dt = db.Column(db.DateTime, nullable=False)
+#     result = db.Column(db.String(length=10), nullable=False)
 

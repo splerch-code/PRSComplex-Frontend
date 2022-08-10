@@ -11,14 +11,6 @@ class LoginForm(FlaskForm):
 
 
 class NewAccountForm(FlaskForm):
-    def validate_username(self, input_username):
-        if User.query.filter_by(username=input_username.data.lower()).first():
-            raise ValidationError('Account already created with email')
-
-    def validate_email(self, input_email):
-        if User.query.filter_by(username=input_email.data.lower()).first():
-            raise ValidationError('Account already created with email')
-
     username = StringField(label='Username:',
                            validators=[Length(min=4, max=64), DataRequired()])
     email = StringField(label='Email:', validators=[Email(), DataRequired()])
