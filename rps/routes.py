@@ -68,5 +68,5 @@ def logout_page():
 def test():
     x = 'button_test'
     conn = Connection()
-    conn.send_packet(x)
+    conn.send_packet(x,121024)
     return redirect(url_for('index'))
