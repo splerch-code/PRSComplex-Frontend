@@ -29,6 +29,11 @@ class Connection:
         return f'RPS{packet_type}{in_data}COMPLEX'.encode(FORMAT)
 
 
+    def create_account(self,username,email,password_hash):
+        return
+
+
+
 
 
 
